@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class FrontDesk {
     static void main() {
         Library stadsbiblioteket = new Library
-                ("Stadsbilblioteket", 5, 10);
+                ("Stadsbilblioteket", 2, 10);
         Scanner sc = new Scanner(System.in);
         boolean isRunning = true;
 
@@ -20,13 +20,11 @@ public class FrontDesk {
                 }
                 case "1" ->
                     handleAddBook(sc, stadsbiblioteket);
-                
+                case "2" ->
+                    handleAddMember(sc, stadsbiblioteket);
+
+
             }
-
-
-
-
-
 
 
 
@@ -47,7 +45,16 @@ public class FrontDesk {
 
         Book book = new Book(author, title, isbn);
         library.addBook(book);
+    }
 
+    public static void handleAddMember(Scanner scanner, Library library) {
+        System.out.println("Enter first name: ");
+        String firstName = scanner.nextLine().trim();
+        System.out.println("Enter last name: ");
+        String lastName = scanner.nextLine().trim();
+
+        Member member = new Member(firstName, lastName);
+        library.addMember(member);
     }
 
     public static void printMenu() {

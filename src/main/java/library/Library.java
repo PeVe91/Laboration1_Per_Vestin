@@ -5,7 +5,9 @@ public class Library {
     private Book[] books;
     private Member[] members;
     private int bookCount = 0;
+    private int memberCount = 0;
 
+    //------------------CONSTRUCTOR------------------
     public Library(String name, int initialBookCap, int initialMemberCap) {
         this.name = name;
         this.books = new Book[initialBookCap];
@@ -14,11 +16,24 @@ public class Library {
 
     //--------------------METHODS--------------------
 
+    public void addMember(Member member) {
+        if (memberCount == members.length) {
+            expandMembersArray();
+        }
+        members[memberCount++] = member;
+    }
+
     public void addBook(Book book) {
         if (bookCount == books.length) {
             expandBooksArray();
         }
         books[bookCount++] = book;
+    }
+
+    public void expandMembersArray() {
+        Member[] newMembers = new Member[members.length * 2];
+        System.arraycopy(members, 0, newMembers, 0, memberCount);
+        members = newMembers;
     }
 
     public void expandBooksArray() {
@@ -27,6 +42,9 @@ public class Library {
         books = newBooks;
     }
 
+    //--------------------GETTERS--------------------
+
+    //--------------------SETTERS--------------------
 
 
 }
