@@ -19,6 +19,8 @@ public class Library {
 
     //--------------------METHODS--------------------
 
+
+
     public void addMember(Member member) {
         if (memberCount == members.length) {
             expandMembersArray();
@@ -46,6 +48,27 @@ public class Library {
     }
 
     //--------------------GETTERS--------------------
+    public Book[] getBooks() {
+        return books;
+    }
+    public Member[] getMembers() {
+        return members;
+    }
+    public Loan[] getLoans() {
+        return loans;
+    }
+    public int getBookCount() {
+        return bookCount;
+    }
+    public int getMemberCount() {
+        return memberCount;
+    }
+    public int getLoanCount() {
+        return loanCount;
+    }
+    public String getName() {
+        return name;
+    }
 
     //--------------------SETTERS--------------------
 

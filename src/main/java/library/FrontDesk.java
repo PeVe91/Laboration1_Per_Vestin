@@ -12,7 +12,7 @@ public class FrontDesk {
         while (true) {
 
             printMenu();
-            String choice = sc.nextLine();
+            String choice = sc.nextLine().trim();
             switch (choice.toLowerCase()) {
                 case "e" -> {
                     isRunning = false;
@@ -22,6 +22,9 @@ public class FrontDesk {
                     handleAddBook(sc, stadsbiblioteket);
                 case "2" ->
                     handleAddMember(sc, stadsbiblioteket);
+                case "5" ->
+                    handleSearchBook();
+                default -> System.out.println("Invalid choice.");
 
 
             }
@@ -34,6 +37,10 @@ public class FrontDesk {
     }
 
     //--------------------METHODS--------------------
+
+    public static void handleSearchBook() {
+
+    }
 
     public static void handleAddBook(Scanner scanner, Library library) {
         System.out.println("Enter Author: ");
