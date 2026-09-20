@@ -53,12 +53,39 @@ public class FrontDesk {
     }
 
     public static void handleAddBook(Scanner scanner, Library library) {
+        String author = "";
+        while (true) {
         System.out.println("Enter Author: ");
-        String author = scanner.nextLine().trim();
-        System.out.println("Enter title: ");
-        String title = scanner.nextLine().trim();
-        System.out.println("ISBN-number: ");
-        String isbn = scanner.nextLine().trim();
+        author = scanner.nextLine().trim();
+            if (author.isBlank()) {
+                System.out.println("Invalid input.");
+            } else  {
+                break;
+            }
+        }
+
+        String title = "";
+        while (true) {
+            System.out.println("Enter title: ");
+            title = scanner.nextLine().trim();
+            if (title.isBlank()) {
+                System.out.println("Invalid input.");
+            } else {
+                break;
+            }
+        }
+
+
+        String isbn = "";
+        while (true) {
+            System.out.println("ISBN-number: ");
+            isbn = scanner.nextLine().trim();
+            if (isbn.isBlank()) {
+                System.out.println("Invalid input.");
+            } else  {
+                break;
+            }
+        }
 
         Book book = new Book(author, title, isbn);
         library.addBook(book);
