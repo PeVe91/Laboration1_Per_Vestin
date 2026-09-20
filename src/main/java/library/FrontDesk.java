@@ -37,7 +37,7 @@ public class FrontDesk {
     }
 
     //--------------------METHODS--------------------
-
+        //----------------(MENU CHOICES)-----------------
     public static void handleSearchBook(Scanner sc, Library library) {
         System.out.println("Search for an author or a title:");
         String searchInput = sc.nextLine().trim();
@@ -65,10 +65,27 @@ public class FrontDesk {
     }
 
     public static void handleAddMember(Scanner scanner, Library library) {
-        System.out.println("Enter first name: ");
-        String firstName = scanner.nextLine().trim();
-        System.out.println("Enter last name: ");
-        String lastName = scanner.nextLine().trim();
+        String firstName = "";
+        String lastName = "";
+
+        while (true) {
+            System.out.println("Enter first name: ");
+            firstName = scanner.nextLine().trim();
+            if (firstName.isBlank()) {
+                System.out.println("Invalid input.");
+            } else {
+                break;
+            }
+        }
+        while (true) {
+            System.out.println("Enter last name: ");
+            lastName = scanner.nextLine().trim();
+            if (lastName.isBlank()) {
+                System.out.println("Invalid input.");
+            } else {
+                break;
+            }
+        }
 
         Member member = new Member(firstName, lastName);
         library.addMember(member);
