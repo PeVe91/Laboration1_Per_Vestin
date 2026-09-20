@@ -23,7 +23,7 @@ public class FrontDesk {
                 case "2" ->
                     handleAddMember(sc, stadsbiblioteket);
                 case "5" ->
-                    handleSearchBook();
+                    handleSearchBook(sc, stadsbiblioteket);
                 default -> System.out.println("Invalid choice.");
 
 
@@ -38,8 +38,18 @@ public class FrontDesk {
 
     //--------------------METHODS--------------------
 
-    public static void handleSearchBook() {
+    public static void handleSearchBook(Scanner sc, Library library) {
+        System.out.println("Search for an author or a title:");
+        String searchInput = sc.nextLine().trim();
 
+        if (searchInput.isBlank()) {
+            System.out.println("Invalid input.");
+            return;
+        }
+
+        Book[] result = library.searchBook(searchInput);
+
+        System.out.println("Number of matching items: " + result.length);
     }
 
     public static void handleAddBook(Scanner scanner, Library library) {

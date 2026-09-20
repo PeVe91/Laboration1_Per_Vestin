@@ -19,7 +19,25 @@ public class Library {
 
     //--------------------METHODS--------------------
 
+    public Book[] searchBook(String searchInput) {
+        String search = searchInput.toLowerCase();
+        Book[] matchingBooks = new Book[bookCount];
+        int matchCount = 0;
 
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].author().toLowerCase().contains(search)
+                    || books[i].title().toLowerCase().contains(search)) {
+                matchingBooks[matchCount++] = books[i];
+            }
+        }
+        return fitSearchArray(matchingBooks, matchCount);
+    }
+
+    private Book[] fitSearchArray(Book[] matchingBooks, int matchCount) {
+        Book[] matchingBooksTemp = new Book[matchCount];
+        System.arraycopy(matchingBooks, 0, matchingBooksTemp, 0, matchCount);
+        return matchingBooksTemp;
+    }
 
     public void addMember(Member member) {
         if (memberCount == members.length) {
