@@ -53,7 +53,7 @@ public class FrontDesk {
     }
 
     public static void handleAddBook(Scanner scanner, Library library) {
-        String author = "";
+        String author;
         while (true) {
         System.out.println("Enter Author: ");
         author = scanner.nextLine().trim();
@@ -64,7 +64,7 @@ public class FrontDesk {
             }
         }
 
-        String title = "";
+        String title;
         while (true) {
             System.out.println("Enter title: ");
             title = scanner.nextLine().trim();

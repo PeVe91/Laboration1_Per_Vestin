@@ -51,6 +51,7 @@ public class Library {
             expandBooksArray();
         }
         books[bookCount++] = book;
+        sortBooksByTitle();
     }
 
     private void expandMembersArray() {
@@ -63,6 +64,21 @@ public class Library {
         Book[] newBooks = new Book[books.length * 2];
         System.arraycopy(books, 0, newBooks, 0, bookCount);
         books = newBooks;
+    }
+
+    private void sortBooksByTitle () {
+
+        for (int i = 0; i < bookCount - 1; i++) {
+
+            for (int j = i + 1; j < bookCount; j++) {
+                if (books[i].title().compareToIgnoreCase(books[j].title()) > 0) {
+                    Book temp = books[j];
+                    books[j] = books[i];
+                    books[i] = temp;
+                }
+            }
+
+        }
     }
 
     //--------------------GETTERS--------------------
