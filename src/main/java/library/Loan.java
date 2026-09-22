@@ -1,10 +1,8 @@
 package library;
 
 public class Loan {
-
-    private Book book;
-    private Member member;
-    private int loanCount;
+    private final Book book;
+    private final Member member;
 
     //------------------CONSTRUCTOR------------------
     public Loan(Book book, Member member) {
@@ -19,5 +17,4 @@ public class Loan {
     public Member getMember() {
         return member;
     }
-
 }

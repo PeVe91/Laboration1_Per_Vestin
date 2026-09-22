@@ -8,6 +8,7 @@ public class Library {
     private int bookCount = 0;
     private int memberCount = 0;
     private int loanCount = 0;
+    private int memberLoanCount;
 
     //------------------CONSTRUCTOR------------------
     public Library(String name, int initialBookCap, int initialMemberCap) {
@@ -81,6 +82,17 @@ public class Library {
         }
     }
 
+    public boolean isBookBorrowed (Book book) {
+
+        for (int i = 0; i < loanCount; i++) {
+
+            if (loans[i].getBook().equals(book)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //--------------------GETTERS--------------------
     public Book[] getBooks() {
         return books;
@@ -103,6 +115,10 @@ public class Library {
     public String getName() {
         return name;
     }
+    public int getMemberLoanCount() {
+        return memberLoanCount;
+    }
+
 
     //--------------------SETTERS--------------------
 

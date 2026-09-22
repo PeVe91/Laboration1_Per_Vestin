@@ -6,14 +6,12 @@ public class Member {
     private final String lastName;
     private final int memberId;
     private static int nextMemberId = 100;
-    private int activeLoansCount;
 
     //------------------CONSTRUCTOR------------------
     public Member(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberId = nextMemberId++;
-        this.activeLoansCount = 0;
     }
 
     //--------------------METHODS--------------------
@@ -28,14 +26,5 @@ public class Member {
     public int getMemberId() {
         return memberId;
     }
-    public int getActiveLoansCount() {
-        return activeLoansCount;
-    }
     //--------------------SETTERS--------------------
-    public void incrementActiveLoansCount() {
-        this.activeLoansCount++;
-    }
-    public void decrementActiveLoansCount() {
-        this.activeLoansCount--;
-    }
 }
