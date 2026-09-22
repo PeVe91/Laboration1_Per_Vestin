@@ -9,32 +9,28 @@ public class FrontDesk {
         Scanner sc = new Scanner(System.in);
         boolean isRunning = true;
 
-        while (true) {
+        while (isRunning) {
 
             printMenu();
             String choice = sc.nextLine().trim();
             switch (choice.toLowerCase()) {
-                case "e" -> {
+                case "e" ->
                     isRunning = false;
-                    return;
-                }
                 case "1" ->
                     handleAddBook(sc, stadsbiblioteket);
                 case "2" ->
                     handleAddMember(sc, stadsbiblioteket);
                 case "3" ->
                     handleAddLoan(sc, stadsbiblioteket);
+                case "4" ->
+                    handleReturnBook(sc, stadsbiblioteket);
                 case "5" ->
                     handleSearchBook(sc, stadsbiblioteket);
                 default -> System.out.println("Invalid choice.");
 
-
             }
 
-
-
         }
-
 
     }
 
@@ -153,6 +149,28 @@ public class FrontDesk {
             System.out.println("Loan successful!");
         } else {
             System.out.println("Loan failed!");
+        }
+
+    }
+
+    public static void handleReturnBook(Scanner scanner, Library library) {
+        String title;
+        while (true) {
+            System.out.println("Enter the title of the book you wish to return:");
+            title = scanner.nextLine().trim();
+            if (title.isBlank()) {
+                System.out.println("Title cannot be empty.");
+            } else  {
+                break;
+            }
+        }
+
+        boolean success = library.returnBook(title);
+
+        if (success) {
+            System.out.println("Return successful!");
+        } else {
+            System.out.println("This book is currently not lent out!");
         }
 
     }

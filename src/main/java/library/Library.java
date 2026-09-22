@@ -60,6 +60,40 @@ public class Library {
         }
     }
 
+    public boolean newLoan(int memberId, String bookTitle) {
+
+        Member member = searchMemberId(memberId);
+        Book book = searchBookTitle(bookTitle);
+
+        if (member == null ||
+                book == null ||
+                isBookBorrowed(book) ||
+                getActiveLoansCount(memberId) >= 3) {
+            return false;
+        }
+
+        Loan loan = new Loan(book, member);
+
+        addLoan(loan);
+
+        return true;
+    }
+
+    public boolean returnBook (String bookTitle) {
+
+        for (int i = 0; i < loanCount; i++) {
+            if (loans[i].getBook().title().equalsIgnoreCase(bookTitle)) {
+
+                loans[i] = loans[loanCount - 1];
+                loans[loanCount - 1] = null;
+                loanCount--;
+
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isBookBorrowed (Book book) {
 
         for (int i = 0; i < loanCount; i++) {
@@ -86,25 +120,6 @@ public class Library {
         }
         books[bookCount++] = book;
         sortBooksByTitle();
-    }
-
-    public boolean newLoan(int memberId, String bookTitle) {
-
-        Member member = searchMemberId(memberId);
-        Book book = searchBookTitle(bookTitle);
-
-        if (member == null ||
-                book == null ||
-                isBookBorrowed(book) ||
-                getActiveLoansCount(memberId) >= 3) {
-            return false;
-        }
-
-        Loan loan = new Loan(book, member);
-
-        addLoan(loan);
-
-        return true;
     }
 
     public void addLoan(Loan loan) {
