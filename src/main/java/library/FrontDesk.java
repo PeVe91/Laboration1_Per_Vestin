@@ -38,20 +38,20 @@ public class FrontDesk {
 
     //--------------------METHODS--------------------
         //----------------(MENU CHOICES)-----------------
-    public static void handleSearchBook(Scanner sc, Library library) {
-        System.out.println("Search for an author or a title:");
-        String searchInput = sc.nextLine().trim();
-
-        if (searchInput.isBlank()) {
-            System.out.println("Invalid input.");
-            return;
-        }
-
-        Book[] result = library.searchBook(searchInput);
-
-        System.out.println("Number of matching items: " + result.length);
+    public static void printMenu() {
+        IO.println("""
+                Bibliotekshanteraren
+                ====================
+                1. Lägg till bok
+                2. Registrera medlem
+                3. Låna bok
+                4. Lämna tillbaka bok
+                5. Sök bok (titel eller författare)
+                6. Visa alla böcker och status
+                e. Avsluta
+                """);
     }
-
+    
     public static void handleAddBook(Scanner scanner, Library library) {
         String author;
         while (true) {
@@ -118,17 +118,18 @@ public class FrontDesk {
         library.addMember(member);
     }
 
-    public static void printMenu() {
-        IO.println("""
-                Bibliotekshanteraren
-                ====================
-                1. Lägg till bok
-                2. Registrera medlem
-                3. Låna bok
-                4. Lämna tillbaka bok
-                5. Sök bok (titel eller författare)
-                6. Visa alla böcker och status
-                e. Avsluta
-                """);
+    public static void handleSearchBook(Scanner sc, Library library) {
+        System.out.println("Search for an author or a title:");
+        String searchInput = sc.nextLine().trim();
+
+        if (searchInput.isBlank()) {
+            System.out.println("Invalid input.");
+            return;
+        }
+
+        Book[] result = library.searchBook(searchInput);
+
+        System.out.println("Number of matching items: " + result.length);
     }
+
 }
