@@ -51,7 +51,7 @@ public class FrontDesk {
                 e. Avsluta
                 """);
     }
-    
+
     public static void handleAddBook(Scanner scanner, Library library) {
         String author;
         while (true) {
@@ -116,6 +116,10 @@ public class FrontDesk {
 
         Member member = new Member(firstName, lastName);
         library.addMember(member);
+    }
+
+    public static void handleAddLoan (Scanner scanner, Library library) {
+
     }
 
     public static void handleSearchBook(Scanner sc, Library library) {

@@ -8,7 +8,6 @@ public class Library {
     private int bookCount = 0;
     private int memberCount = 0;
     private int loanCount = 0;
-    private int memberLoanCount;
 
     //------------------CONSTRUCTOR------------------
     public Library(String name, int initialBookCap, int initialMemberCap) {
@@ -40,6 +39,12 @@ public class Library {
         return matchingBooksTemp;
     }
 
+    private Loan[] fitSearchArray(Loan[] matchingLoans, int matchCount) {
+        Loan[] matchingLoansTemp = new Loan[matchCount];
+        System.arraycopy(matchingLoans, 0, matchingLoansTemp, 0, matchCount);
+        return matchingLoansTemp;
+    }
+
     public void addMember(Member member) {
         if (memberCount == members.length) {
             expandMembersArray();
@@ -55,6 +60,13 @@ public class Library {
         sortBooksByTitle();
     }
 
+    public void addLoan(Loan loan) {
+        if (loanCount == loans.length) {
+            expandLoansArray();
+        }
+        loans[loanCount++] = loan;
+    }
+
     private void expandMembersArray() {
         Member[] newMembers = new Member[members.length * 2];
         System.arraycopy(members, 0, newMembers, 0, memberCount);
@@ -65,6 +77,12 @@ public class Library {
         Book[] newBooks = new Book[books.length * 2];
         System.arraycopy(books, 0, newBooks, 0, bookCount);
         books = newBooks;
+    }
+
+    private void expandLoansArray() {
+        Loan[] newLoans = new Loan[loans.length * 2];
+        System.arraycopy(loans, 0, newLoans, 0, loanCount);
+        loans = newLoans;
     }
 
     private void sortBooksByTitle () {
@@ -115,8 +133,16 @@ public class Library {
     public String getName() {
         return name;
     }
-    public int getMemberLoanCount() {
-        return memberLoanCount;
+    public int getActiveLoansCount(int memberId) {
+        int count = 0;
+
+        for (int i = 0; i < loanCount; i++) {
+            // Om lånet tillhör medlemmen vi letar efter -> plussa på 1
+            if (loans[i].getMember().getMemberId() == memberId) {
+                count++;
+            }
+        }
+        return count;
     }
 
 
