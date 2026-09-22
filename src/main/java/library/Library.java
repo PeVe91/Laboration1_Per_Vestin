@@ -45,46 +45,6 @@ public class Library {
         return matchingLoansTemp;
     }
 
-    public void addMember(Member member) {
-        if (memberCount == members.length) {
-            expandMembersArray();
-        }
-        members[memberCount++] = member;
-    }
-
-    public void addBook(Book book) {
-        if (bookCount == books.length) {
-            expandBooksArray();
-        }
-        books[bookCount++] = book;
-        sortBooksByTitle();
-    }
-
-    public void addLoan(Loan loan) {
-        if (loanCount == loans.length) {
-            expandLoansArray();
-        }
-        loans[loanCount++] = loan;
-    }
-
-    private void expandMembersArray() {
-        Member[] newMembers = new Member[members.length * 2];
-        System.arraycopy(members, 0, newMembers, 0, memberCount);
-        members = newMembers;
-    }
-
-    private void expandBooksArray() {
-        Book[] newBooks = new Book[books.length * 2];
-        System.arraycopy(books, 0, newBooks, 0, bookCount);
-        books = newBooks;
-    }
-
-    private void expandLoansArray() {
-        Loan[] newLoans = new Loan[loans.length * 2];
-        System.arraycopy(loans, 0, newLoans, 0, loanCount);
-        loans = newLoans;
-    }
-
     private void sortBooksByTitle () {
 
         for (int i = 0; i < bookCount - 1; i++) {
@@ -111,7 +71,52 @@ public class Library {
         return false;
     }
 
-    //--------------------GETTERS--------------------
+        //------------------ADD OBJECTS------------------
+
+    public void addMember(Member member) {
+        if (memberCount == members.length) {
+            expandMembersArray();
+        }
+        members[memberCount++] = member;
+    }
+
+    public void addBook(Book book) {
+        if (bookCount == books.length) {
+            expandBooksArray();
+        }
+        books[bookCount++] = book;
+        sortBooksByTitle();
+    }
+
+    public void addLoan(Loan loan) {
+        if (loanCount == loans.length) {
+            expandLoansArray();
+        }
+        loans[loanCount++] = loan;
+    }
+
+        //-------------------EXPANDERS-------------------
+
+    private void expandMembersArray() {
+        Member[] newMembers = new Member[members.length * 2];
+        System.arraycopy(members, 0, newMembers, 0, memberCount);
+        members = newMembers;
+    }
+
+    private void expandBooksArray() {
+        Book[] newBooks = new Book[books.length * 2];
+        System.arraycopy(books, 0, newBooks, 0, bookCount);
+        books = newBooks;
+    }
+
+    private void expandLoansArray() {
+        Loan[] newLoans = new Loan[loans.length * 2];
+        System.arraycopy(loans, 0, newLoans, 0, loanCount);
+        loans = newLoans;
+    }
+
+        //--------------------GETTERS--------------------
+
     public Book[] getBooks() {
         return books;
     }
@@ -146,7 +151,7 @@ public class Library {
     }
 
 
-    //--------------------SETTERS--------------------
+        //--------------------SETTERS--------------------
 
 
 }
