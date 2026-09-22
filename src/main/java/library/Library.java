@@ -88,12 +88,52 @@ public class Library {
         sortBooksByTitle();
     }
 
+    public boolean newLoan(int memberId, String bookTitle) {
+
+        Member member = searchMemberId(memberId);
+        Book book = searchBookTitle(bookTitle);
+
+        if (member == null ||
+                book == null ||
+                isBookBorrowed(book) ||
+                getActiveLoansCount(memberId) >= 3) {
+            return false;
+        }
+
+        Loan loan = new Loan(book, member);
+
+        addLoan(loan);
+
+        return true;
+    }
+
     public void addLoan(Loan loan) {
         if (loanCount == loans.length) {
             expandLoansArray();
         }
         loans[loanCount++] = loan;
     }
+
+    public Member searchMemberId(int memberId) {
+
+        for (int i = 0; i < memberCount; i++) {
+            if (members[i].getMemberId() == memberId) {
+                return members[i];
+            }
+        }
+        return null;
+    }
+
+    public Book searchBookTitle(String bookTitle) {
+
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].title().equalsIgnoreCase(bookTitle.trim())) {
+                return books[i];
+            }
+        }
+        return null;
+    }
+
 
         //-------------------EXPANDERS-------------------
 

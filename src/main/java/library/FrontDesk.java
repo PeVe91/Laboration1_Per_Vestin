@@ -22,6 +22,8 @@ public class FrontDesk {
                     handleAddBook(sc, stadsbiblioteket);
                 case "2" ->
                     handleAddMember(sc, stadsbiblioteket);
+                case "3" ->
+                    handleAddLoan(sc, stadsbiblioteket);
                 case "5" ->
                     handleSearchBook(sc, stadsbiblioteket);
                 default -> System.out.println("Invalid choice.");
@@ -119,6 +121,39 @@ public class FrontDesk {
     }
 
     public static void handleAddLoan (Scanner scanner, Library library) {
+
+        String title;
+        int memberId;
+
+        while (true) {
+            System.out.println("Enter the title of the book you wish to borrow:");
+            title = scanner.nextLine().trim();
+
+            if (title.isBlank()) {
+                System.out.println("Invalid input. Title cannot be empty.");
+            } else {
+                break;
+            }
+        }
+
+        while (true) {
+            System.out.println("Enter your Member ID:");
+
+            try {
+                memberId = Integer.parseInt(scanner.nextLine().trim());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Member ID can only contain numbers.");
+            }
+        }
+
+        boolean success = library.newLoan(memberId, title);
+
+        if (success) {
+            System.out.println("Loan successful!");
+        } else {
+            System.out.println("Loan failed!");
+        }
 
     }
 
