@@ -50,11 +50,11 @@ public class FrontDesk {
                 """);
     }
 
-    public static void handleAddBook(Scanner scanner, Library library) {
+    public static void handleAddBook(Scanner sc, Library library) {
         String author;
         while (true) {
         System.out.println("Enter Author: ");
-        author = scanner.nextLine().trim();
+        author = sc.nextLine().trim();
             if (author.isBlank()) {
                 System.out.println("Invalid input.");
             } else  {
@@ -65,7 +65,7 @@ public class FrontDesk {
         String title;
         while (true) {
             System.out.println("Enter title: ");
-            title = scanner.nextLine().trim();
+            title = sc.nextLine().trim();
             if (title.isBlank()) {
                 System.out.println("Invalid input.");
             } else {
@@ -77,7 +77,7 @@ public class FrontDesk {
         String isbn = "";
         while (true) {
             System.out.println("ISBN-number: ");
-            isbn = scanner.nextLine().trim();
+            isbn = sc.nextLine().trim();
             if (isbn.isBlank()) {
                 System.out.println("Invalid input.");
             } else  {
@@ -89,13 +89,13 @@ public class FrontDesk {
         library.addBook(book);
     }
 
-    public static void handleAddMember(Scanner scanner, Library library) {
+    public static void handleAddMember(Scanner sc, Library library) {
         String firstName = "";
         String lastName = "";
 
         while (true) {
             System.out.println("Enter first name: ");
-            firstName = scanner.nextLine().trim();
+            firstName = sc.nextLine().trim();
             if (firstName.isBlank()) {
                 System.out.println("Invalid input.");
             } else {
@@ -104,7 +104,7 @@ public class FrontDesk {
         }
         while (true) {
             System.out.println("Enter last name: ");
-            lastName = scanner.nextLine().trim();
+            lastName = sc.nextLine().trim();
             if (lastName.isBlank()) {
                 System.out.println("Invalid input.");
             } else {
@@ -116,14 +116,14 @@ public class FrontDesk {
         library.addMember(member);
     }
 
-    public static void handleAddLoan (Scanner scanner, Library library) {
+    public static void handleAddLoan (Scanner sc, Library library) {
 
         String title;
         int memberId;
 
         while (true) {
             System.out.println("Enter the title of the book you wish to borrow:");
-            title = scanner.nextLine().trim();
+            title = sc.nextLine().trim();
 
             if (title.isBlank()) {
                 System.out.println("Invalid input. Title cannot be empty.");
@@ -136,7 +136,7 @@ public class FrontDesk {
             System.out.println("Enter your Member ID:");
 
             try {
-                memberId = Integer.parseInt(scanner.nextLine().trim());
+                memberId = Integer.parseInt(sc.nextLine().trim());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Member ID can only contain numbers.");
@@ -153,11 +153,11 @@ public class FrontDesk {
 
     }
 
-    public static void handleReturnBook(Scanner scanner, Library library) {
+    public static void handleReturnBook(Scanner sc, Library library) {
         String title;
         while (true) {
             System.out.println("Enter the title of the book you wish to return:");
-            title = scanner.nextLine().trim();
+            title = sc.nextLine().trim();
             if (title.isBlank()) {
                 System.out.println("Title cannot be empty.");
             } else  {
