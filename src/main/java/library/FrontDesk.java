@@ -39,7 +39,7 @@ public class FrontDesk {
     //--------------------METHODS--------------------
         //----------------(MENU CHOICES)-----------------
     public static void printMenu() {
-        IO.println("""
+        System.out.println("""
                 Bibliotekshanteraren
                 ====================
                 1. Lägg till bok
