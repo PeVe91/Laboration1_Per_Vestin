@@ -1,5 +1,5 @@
 
-OBS! Läs beskrivningar till commits för en klarare bild av händelseförloppet!!
+OBS! Läs beskrivningar till commits för en klarare bild av händelseförloppet!
 
 Struktur:
     Record: Book
