@@ -26,6 +26,8 @@ public class FrontDesk {
                     handleReturnBook(sc, stadsbiblioteket);
                 case "5" ->
                     handleSearchBook(sc, stadsbiblioteket);
+                case "6" ->
+                    handleShowBooksAndStatus(stadsbiblioteket);
                 default -> System.out.println("Invalid choice.");
 
             }
@@ -74,8 +76,13 @@ public class FrontDesk {
             }
         }
 
+        String isbn;
+        do {
+            long randomNumber = (long) (Math.random() * 9_000_000_000L) + 1_000_000_000L;
+            isbn = String.valueOf(randomNumber);
 
-        String isbn = "";
+        } while (library.isbnAlreadyExists(isbn));
+        /*
         while (true) {
             System.out.println("ISBN-number: ");
             isbn = sc.nextLine().trim();
@@ -86,9 +93,13 @@ public class FrontDesk {
             } else
                 break;
         }
+         */
+
+
 
         Book book = new Book(author, title, isbn);
         library.addBook(book);
+
     }
 
     public static void handleAddMember(Scanner sc, Library library) {
@@ -194,5 +205,11 @@ public class FrontDesk {
 
         System.out.println("Number of matching items: " + result.length);
     }
+
+    public static void handleShowBooksAndStatus(Library library) {
+        library.showAllBooks();
+    }
+
+
 
 }

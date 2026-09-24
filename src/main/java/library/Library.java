@@ -19,6 +19,8 @@ public class Library {
 
     //--------------------METHODS--------------------
 
+        //--------------------SEARCH---------------------
+
     public Book[] searchBook(String searchInput) {
         String search = searchInput.toLowerCase();
         Book[] matchingBooks = new Book[bookCount];
@@ -32,6 +34,73 @@ public class Library {
         }
         return fitSearchArray(matchingBooks, matchCount);
     }
+
+    public Member searchMemberId(int memberId) {
+
+        for (int i = 0; i < memberCount; i++) {
+            if (members[i].getMemberId() == memberId) {
+                return members[i];
+            }
+        }
+        return null;
+    }
+
+    public Book searchBookTitle(String bookTitle) {
+
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].title().equalsIgnoreCase(bookTitle.trim())) {
+                return books[i];
+            }
+        }
+        return null;
+    }
+
+        //------------------ADD OBJECTS------------------
+
+    public void addMember(Member member) {
+        if (memberCount == members.length) {
+            expandMembersArray();
+        }
+        members[memberCount++] = member;
+    }
+
+    public void addBook(Book book) {
+        if (bookCount == books.length) {
+            expandBooksArray();
+        }
+        books[bookCount++] = book;
+        sortBooksByTitle();
+        System.out.println("Book added successfully!\nThis book was assigned ISBN: " + book.isbn());
+    }
+
+    public void addLoan(Loan loan) {
+        if (loanCount == loans.length) {
+            expandLoansArray();
+        }
+        loans[loanCount++] = loan;
+    }
+
+        //-------------------EXPANDERS-------------------
+
+    private void expandMembersArray() {
+        Member[] newMembers = new Member[members.length * 2];
+        System.arraycopy(members, 0, newMembers, 0, memberCount);
+        members = newMembers;
+    }
+
+    private void expandBooksArray() {
+        Book[] newBooks = new Book[books.length * 2];
+        System.arraycopy(books, 0, newBooks, 0, bookCount);
+        books = newBooks;
+    }
+
+    private void expandLoansArray() {
+        Loan[] newLoans = new Loan[loans.length * 2];
+        System.arraycopy(loans, 0, newLoans, 0, loanCount);
+        loans = newLoans;
+    }
+
+        //---------------------OTHER---------------------
 
     private Book[] fitSearchArray(Book[] matchingBooks, int matchCount) {
         Book[] matchingBooksTemp = new Book[matchCount];
@@ -105,74 +174,32 @@ public class Library {
         return false;
     }
 
-        //------------------ADD OBJECTS------------------
-
-    public void addMember(Member member) {
-        if (memberCount == members.length) {
-            expandMembersArray();
+    public boolean isbnAlreadyExists(String isbn) {
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] != null && books[i].isbn().equals(isbn)) {
+                return true;
+            }
         }
-        members[memberCount++] = member;
+        return false;
     }
 
     public void welcomeNewMember(String firstName, int memberId) {
         System.out.println("Welcome " + firstName + "! Your unique member ID is: " + memberId);
     }
 
-
-    public void addBook(Book book) {
-        if (bookCount == books.length) {
-            expandBooksArray();
-        }
-        books[bookCount++] = book;
-        sortBooksByTitle();
-    }
-
-    public void addLoan(Loan loan) {
-        if (loanCount == loans.length) {
-            expandLoansArray();
-        }
-        loans[loanCount++] = loan;
-    }
-
-    public Member searchMemberId(int memberId) {
-
-        for (int i = 0; i < memberCount; i++) {
-            if (members[i].getMemberId() == memberId) {
-                return members[i];
-            }
-        }
-        return null;
-    }
-
-    public Book searchBookTitle(String bookTitle) {
-
+    public void showAllBooks() {
+        String isBorrowed;
         for (int i = 0; i < bookCount; i++) {
-            if (books[i].title().equalsIgnoreCase(bookTitle.trim())) {
-                return books[i];
-            }
+            Book book = books[i];
+            if (isBookBorrowed(book)) {
+                isBorrowed = "currently lent out.";
+            } else
+                isBorrowed = "currently not lent out.";
+            System.out.println(book.title() +
+                    " by " + book.author() + ". ISBN: " +  book.isbn() +
+                    ". This book is " +  isBorrowed);
         }
-        return null;
-    }
 
-
-        //-------------------EXPANDERS-------------------
-
-    private void expandMembersArray() {
-        Member[] newMembers = new Member[members.length * 2];
-        System.arraycopy(members, 0, newMembers, 0, memberCount);
-        members = newMembers;
-    }
-
-    private void expandBooksArray() {
-        Book[] newBooks = new Book[books.length * 2];
-        System.arraycopy(books, 0, newBooks, 0, bookCount);
-        books = newBooks;
-    }
-
-    private void expandLoansArray() {
-        Loan[] newLoans = new Loan[loans.length * 2];
-        System.arraycopy(loans, 0, newLoans, 0, loanCount);
-        loans = newLoans;
     }
 
         //--------------------GETTERS--------------------
@@ -209,10 +236,5 @@ public class Library {
         }
         return count;
     }
-
-
-
-        //--------------------SETTERS--------------------
-
 
 }
