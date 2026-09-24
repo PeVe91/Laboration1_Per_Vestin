@@ -114,6 +114,11 @@ public class Library {
         members[memberCount++] = member;
     }
 
+    public void welcomeNewMember(String firstName, int memberId) {
+        System.out.println("Welcome " + firstName + "! Your unique member ID is: " + memberId);
+    }
+
+
     public void addBook(Book book) {
         if (bookCount == books.length) {
             expandBooksArray();
@@ -204,6 +209,7 @@ public class Library {
         }
         return count;
     }
+
 
 
         //--------------------SETTERS--------------------

@@ -5,7 +5,7 @@ public class Member {
     private final String firstName;
     private final String lastName;
     private final int memberId;
-    private static int nextMemberId = 100;
+    private static int nextMemberId = 101;
 
     //------------------CONSTRUCTOR------------------
     public Member(String firstName, String lastName) {

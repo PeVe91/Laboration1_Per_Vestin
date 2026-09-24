@@ -56,10 +56,11 @@ public class FrontDesk {
         System.out.println("Enter Author: ");
         author = sc.nextLine().trim();
             if (author.isBlank()) {
-                System.out.println("Invalid input.");
-            } else  {
+                System.out.println("This field cannot be left blank.");
+            } else if (!author.matches("^[a-zA-ZåäöÅÄÖ\\s-]+$")) {
+                System.out.println("Can only contain letters.");
+            } else
                 break;
-            }
         }
 
         String title;
@@ -67,7 +68,7 @@ public class FrontDesk {
             System.out.println("Enter title: ");
             title = sc.nextLine().trim();
             if (title.isBlank()) {
-                System.out.println("Invalid input.");
+                System.out.println("This field cannot be left blank.");
             } else {
                 break;
             }
@@ -79,10 +80,11 @@ public class FrontDesk {
             System.out.println("ISBN-number: ");
             isbn = sc.nextLine().trim();
             if (isbn.isBlank()) {
-                System.out.println("Invalid input.");
-            } else  {
+                System.out.println("This field cannot be left blank.");
+            } else if (!isbn.matches("\\d+"))  {
+                System.out.println("ISBN-number may only contain numbers.");
+            } else
                 break;
-            }
         }
 
         Book book = new Book(author, title, isbn);
@@ -97,23 +99,27 @@ public class FrontDesk {
             System.out.println("Enter first name: ");
             firstName = sc.nextLine().trim();
             if (firstName.isBlank()) {
-                System.out.println("Invalid input.");
-            } else {
+                System.out.println("This field cannot be left blank.");
+            } else if (!firstName.matches("^[a-zA-ZåäöÅÄÖ\\s-]+$")) {
+                System.out.println("First name may only contain letters.");
+            } else
                 break;
-            }
         }
         while (true) {
             System.out.println("Enter last name: ");
             lastName = sc.nextLine().trim();
             if (lastName.isBlank()) {
-                System.out.println("Invalid input.");
-            } else {
+                System.out.println("This field cannot be left blank.");
+            } else if (!lastName.matches("^[a-zA-ZåäöÅÄÖ\\s-]+$")) {
+                System.out.println("Last name may only contain letters.");
+            } else
                 break;
-            }
         }
 
         Member member = new Member(firstName, lastName);
         library.addMember(member);
+
+        library.welcomeNewMember (firstName, member.getMemberId());
     }
 
     public static void handleAddLoan (Scanner sc, Library library) {
@@ -126,7 +132,7 @@ public class FrontDesk {
             title = sc.nextLine().trim();
 
             if (title.isBlank()) {
-                System.out.println("Invalid input. Title cannot be empty.");
+                System.out.println("This field cannot be left blank.");
             } else {
                 break;
             }
@@ -139,7 +145,7 @@ public class FrontDesk {
                 memberId = Integer.parseInt(sc.nextLine().trim());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Member ID can only contain numbers.");
+                System.out.println("Member ID may only contain numbers.");
             }
         }
 
