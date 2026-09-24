@@ -45,6 +45,15 @@ public class Library {
         return null;
     }
 
+    public Book searchIsbn(String isbn) {
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].isbn().equals(isbn)) {
+                return books[i];
+            }
+        }
+        return null;
+    }
+    /*
     public Book searchBookTitle(String bookTitle) {
 
         for (int i = 0; i < bookCount; i++) {
@@ -54,7 +63,7 @@ public class Library {
         }
         return null;
     }
-
+    */
         //------------------ADD OBJECTS------------------
 
     public void addMember(Member member) {
@@ -129,10 +138,10 @@ public class Library {
         }
     }
 
-    public boolean newLoan(int memberId, String bookTitle) {
+    public boolean newLoan(int memberId, String isbn) {
 
         Member member = searchMemberId(memberId);
-        Book book = searchBookTitle(bookTitle);
+        Book book = searchIsbn(isbn);
 
         if (member == null ||
                 book == null ||

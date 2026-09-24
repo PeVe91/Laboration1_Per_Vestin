@@ -135,19 +135,19 @@ public class FrontDesk {
 
     public static void handleAddLoan (Scanner sc, Library library) {
 
-        String title;
+        String isbn;
         int memberId;
 
         while (true) {
-            System.out.println("Enter the title of the book you wish to borrow:");
-            title = sc.nextLine().trim();
+            System.out.println("Enter the ISBN-number of the book you wish to borrow:");
+            isbn = sc.nextLine().trim();
 
-            if (title.isBlank()) {
+            if (isbn.isBlank()) {
                 System.out.println("This field cannot be left blank.");
-            } else {
+            } else
                 break;
-            }
         }
+
 
         while (true) {
             System.out.println("Enter your Member ID:");
@@ -160,7 +160,7 @@ public class FrontDesk {
             }
         }
 
-        boolean success = library.newLoan(memberId, title);
+        boolean success = library.newLoan(memberId, isbn);
 
         if (success) {
             System.out.println("Loan successful!");
