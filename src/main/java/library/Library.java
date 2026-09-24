@@ -205,7 +205,7 @@ public class Library {
             if (isBookBorrowed(book)) {
                 isBorrowed = "currently lent out.\n";
             } else
-                isBorrowed = "currently not lent out.\n";
+                isBorrowed = "currently available.\n";
             System.out.println(book.title() +
                     " by " + book.author() + ". ISBN: " +  book.isbn() +
                     ". This book is " +  isBorrowed);
