@@ -40,15 +40,15 @@ public class FrontDesk {
         //----------------(MENU CHOICES)-----------------
     public static void printMenu() {
         System.out.println("""
-                \nBibliotekshanteraren
+                \nMenu
                 ====================
-                1. Lägg till bok
-                2. Registrera medlem
-                3. Låna bok
-                4. Lämna tillbaka bok
-                5. Sök bok (titel eller författare)
-                6. Visa alla böcker och status
-                e. Avsluta
+                1. Add Book
+                2. Register member
+                3. Borrow book
+                4. Return book
+                5. Search book by title or author
+                6. Show books in inventory and most active member
+                e. Exit
                 """);
     }
 
