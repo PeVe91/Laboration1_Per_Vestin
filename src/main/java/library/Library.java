@@ -196,20 +196,40 @@ public class Library {
         System.out.println("Welcome " + firstName + "! Your unique member ID is: " + memberId);
     }
 
-    public void showAllBooks() {
+    public void showAllStats() {
+
         String isBorrowed;
+        System.out.println("All books in library and availability: \n");
         for (int i = 0; i < bookCount; i++) {
             Book book = books[i];
             if (isBookBorrowed(book)) {
-                isBorrowed = "currently lent out.";
+                isBorrowed = "currently lent out.\n";
             } else
-                isBorrowed = "currently not lent out.";
+                isBorrowed = "currently not lent out.\n";
             System.out.println(book.title() +
                     " by " + book.author() + ". ISBN: " +  book.isbn() +
                     ". This book is " +  isBorrowed);
         }
 
+        Member topMember = null;
+        int mostLoans = 0;
+
+        for (int i = 0; i < memberCount; i++) {
+            int numberOfActiveLoans = getActiveLoansCount(members[i].getMemberId());
+            if (numberOfActiveLoans > mostLoans) {
+                mostLoans = numberOfActiveLoans;
+                topMember = members[i];
+            }
+        }
+
+        if (topMember == null) {
+            System.out.println("There are no active loans");
+        } else {
+            System.out.println("Currently, " + topMember.getFirstName() + " " + topMember.getLastName() + " has most active loans with a numer of " +  mostLoans + " loans.");
+        }
+
     }
+
 
         //--------------------GETTERS--------------------
 

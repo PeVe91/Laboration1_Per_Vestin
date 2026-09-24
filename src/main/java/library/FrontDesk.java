@@ -40,7 +40,7 @@ public class FrontDesk {
         //----------------(MENU CHOICES)-----------------
     public static void printMenu() {
         System.out.println("""
-                Bibliotekshanteraren
+                \nBibliotekshanteraren
                 ====================
                 1. Lägg till bok
                 2. Registrera medlem
@@ -207,7 +207,7 @@ public class FrontDesk {
     }
 
     public static void handleShowBooksAndStatus(Library library) {
-        library.showAllBooks();
+        library.showAllStats();
     }
 
 
