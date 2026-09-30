@@ -157,10 +157,10 @@ public class Library {
         return true;
     }
 
-    public boolean returnBook (String bookTitle) {
+    public boolean returnBook (String isbn) {
 
         for (int i = 0; i < loanCount; i++) {
-            if (loans[i].getBook().title().equalsIgnoreCase(bookTitle)) {
+            if (loans[i].getBook().isbn().equals(isbn)) {
 
                 loans[i] = loans[loanCount - 1];
                 loans[loanCount - 1] = null;

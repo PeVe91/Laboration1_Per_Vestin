@@ -171,18 +171,21 @@ public class FrontDesk {
     }
 
     public static void handleReturnBook(Scanner sc, Library library) {
-        String title;
+        String isbn;
         while (true) {
-            System.out.println("Enter the title of the book you wish to return:");
-            title = sc.nextLine().trim();
-            if (title.isBlank()) {
+            System.out.println("Enter ISBN-number of the book you wish to return:");
+            isbn = sc.nextLine().trim();
+            if (isbn.isBlank()) {
                 System.out.println("Title cannot be empty.");
-            } else  {
+            } else if (isbn.length() != 10) {
+                System.out.println("ISBN-number must be 10 characters.");
+            } else {
                 break;
             }
         }
 
-        boolean success = library.returnBook(title);
+
+        boolean success = library.returnBook(isbn);
 
         if (success) {
             System.out.println("Return successful!");
